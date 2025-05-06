@@ -26,4 +26,8 @@ public class ParentPage extends GWD {
         JavascriptExecutor js = (JavascriptExecutor) GWD.getDriver();
         js.executeScript("arguments[0].scrollIntoView();", element);
     }
+
+    public void waitForElement(WebElement element){
+        wait.until(ExpectedConditions.visibilityOf(element));
+    }
 }
