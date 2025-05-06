@@ -21,9 +21,6 @@ public class _01_RegisterTestRunner extends AbstractTestNGCucumberTests {
         ExtentService.getInstance().setSystemInfo("Application Name", "ParaBank");
         ExtentService.getInstance().setSystemInfo("Operating System Info", System.getProperty("os.name"));
         ExtentService.getInstance().setSystemInfo("Department", "QA");
-        ExtentService.getInstance().setSystemInfo("Ek Satır", "Açıklama");
-        ExtentService.getInstance().setSystemInfo("Ek Satır", "Açıklama");
-        ExtentService.getInstance().setSystemInfo("Ek Satır", "Açıklama");
-        ExtentService.getInstance().setSystemInfo("Ek Satır", "Açıklama");
+        ExtentService.getInstance().setSystemInfo("Ek Not", "Do-While ile sistemdeki hatayı 'bypass' ettik.");
     }
 }
