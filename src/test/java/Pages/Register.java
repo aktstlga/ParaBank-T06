@@ -46,6 +46,12 @@ public class Register extends ParentPage{
     @FindBy(css="input[id='repeatedPassword']")
     public  WebElement repeatPlaceholder;
 
-    @FindBy(css="input[type='submit'][value='Log In']")
+    @FindBy(css="input[type='submit'][value='Register']")
     public  WebElement registerButtonOnForm;
+
+    @FindBy(css="h1[class='title']")
+    public WebElement messeageOfNot;
+
+    @FindBy(css="span[id='customer.username.errors']")
+    public  WebElement errorMesseage;
 }
