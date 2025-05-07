@@ -1,3 +1,5 @@
+// src/test/java/Pages/LoginPage.java
+
 package Pages;
 
 import Utilities.GWD;
@@ -26,10 +28,10 @@ public class LoginPage extends ParentPage {
     @FindBy(css = "#leftPanel > ul > li:nth-child(8) > a")
     public WebElement logoutLink;
 
+    // Hata mesajı <p> öğesinde olduğu için locator resetlendi
     @FindBy(css = "#rightPanel > p")
-    public WebElement loginErrorMessage;  // Error message for negative scenario
+    public WebElement loginErrorMessage;
 
-    // Helper methods for user interactions
     public void enterUsername(String username) {
         mySendKeys(usernameInput, username);
     }
@@ -51,9 +53,6 @@ public class LoginPage extends ParentPage {
         myClick(logoutLink);
     }
 
-    /**
-     * Returns the error message shown on failed login attempts
-     */
     public String getErrorMessageText() {
         waitForElement(loginErrorMessage);
         return loginErrorMessage.getText();

@@ -1,3 +1,5 @@
+// src/test/java/Runners/_02_LoginTestRunner.java
+
 package Runners;
 
 import com.aventstack.extentreports.service.ExtentService;
@@ -8,20 +10,13 @@ import org.testng.annotations.AfterClass;
 @CucumberOptions(
         features = "src/test/java/FeatureFiles/_02_Login.feature",
         glue = "StepDefinitions",
-        plugin = {
-                "pretty",
-                "html:target/cucumber-reports/html",
-                "json:target/cucumber-reports/json/LoginReport.json",
-                "com.aventstack.extentreports.cucumber.adapter.ExtentCucumberAdapter:"
-        },
-        tags = "@Positive or @Negative"
+        plugin = {"com.aventstack.extentreports.cucumber.adapter.ExtentCucumberAdapter:"}
 )
 public class _02_LoginTestRunner extends AbstractTestNGCucumberTests {
-
     @AfterClass
     public static void writeExtentReport() {
-        ExtentService.getInstance().setSystemInfo("OS", System.getProperty("os.name"));
-        ExtentService.getInstance().setSystemInfo("Tester", System.getProperty("user.name"));
-        ExtentService.getInstance().setSystemInfo("Feature", "US602 - User Login");
+        ExtentService.getInstance().setSystemInfo("User", System.getProperty("user.name"));
+        ExtentService.getInstance().setSystemInfo("Time Zone", System.getProperty("user.timezone"));
+        ExtentService.getInstance().setSystemInfo("Application", "ParaBank");
     }
 }
