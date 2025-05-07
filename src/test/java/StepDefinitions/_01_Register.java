@@ -20,7 +20,7 @@ public class _01_Register {
 
     @Given("Navigate to ParaBank Site")
     public void navigate_to_para_bank_site() {
-        GWD.getDriver().get("https://parabank.parasoft.com/parabank/index.htm");
+        GWD.getDriver().get("https://parabank.parasoft.com/");
     }
 
     @Given("Navigate to Register Site")
