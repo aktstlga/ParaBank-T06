@@ -22,7 +22,7 @@ public class MoneyTransfer extends ParentPage {
     @FindBy(xpath = "(//*[text()='Open New Account'])[1]")
     public WebElement openNewAccount;
 
-    @FindBy(xpath = "//div//input")
+    @FindBy(xpath = "//input[@value='Open New Account']")
     public WebElement openNewAccountButton;
 
     @FindBy(xpath = "//*[text()='Transfer Funds']")
