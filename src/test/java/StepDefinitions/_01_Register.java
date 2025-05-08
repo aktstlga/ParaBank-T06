@@ -16,8 +16,6 @@ import java.util.UUID;
 public class _01_Register {
     Register register = new Register();
     Faker dataFaker = new Faker();
-    String password = dataFaker.internet().password(10, 15, true, true);
-    String username = "";
 
     @Given("Navigate to ParaBank Site")
     public void navigate_to_para_bank_site() {
@@ -34,7 +32,6 @@ public class _01_Register {
     public void enter_signing_up_ınformations_and_click_on_register_button() {
         boolean status = false;
         do {
-            username = dataFaker.lorem().characters(5, false);
             register.mySendKeys(register.firstNamePlaceholder, dataFaker.name().firstName());
             register.mySendKeys(register.lastNamePlaceholder, dataFaker.name().lastName());
             register.mySendKeys(register.adressPlaceholder, dataFaker.address().fullAddress());
@@ -43,9 +40,12 @@ public class _01_Register {
             register.mySendKeys(register.zipCodePlaceholder, dataFaker.address().zipCode());
             register.mySendKeys(register.phoneNumberPlaceholder, dataFaker.phoneNumber().cellPhone());
             register.mySendKeys(register.ssnPlaceholder, dataFaker.idNumber().ssnValid());
-            register.mySendKeys(register.usernamePlaceholder, username);
-            register.mySendKeys(register.passwordPlaceholder, password);
-            register.mySendKeys(register.repeatPlaceholder, password);
+
+            ConfigReader.updateProperty("username");
+            register.mySendKeys(register.usernamePlaceholder, ConfigReader.getProperty("username"));
+            ConfigReader.updateProperty("password");
+            register.mySendKeys(register.passwordPlaceholder, ConfigReader.getProperty("password"));
+            register.mySendKeys(register.repeatPlaceholder, ConfigReader.getProperty("password"));
             register.myClick(register.registerButtonOnForm);
 
             List<WebElement> errorForUsername = GWD.getDriver().findElements(By.id("customer.username.errors"));
@@ -60,7 +60,7 @@ public class _01_Register {
     @Then("User should register and login successfully")
     public void user_should_register_and_login_successfully() {
         register.waitForElement(register.messeageOfNot);
-        Assert.assertTrue(register.messeageOfNot.getText().contains(username), "Notification mesajı çıkamadı.");
+        Assert.assertTrue(register.messeageOfNot.getText().contains(ConfigReader.getProperty("username")), "Notification mesajı çıkamadı.");
         GWD.quitDriver();
     }
 }
