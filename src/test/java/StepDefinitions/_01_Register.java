@@ -2,6 +2,7 @@ package StepDefinitions;
 
 import Pages.ParentPage;
 import Pages.Register;
+import Utilities.ConfigReader;
 import Utilities.GWD;
 import io.cucumber.java.en.*;
 import net.datafaker.Faker;
@@ -20,7 +21,7 @@ public class _01_Register {
 
     @Given("Navigate to ParaBank Site")
     public void navigate_to_para_bank_site() {
-        GWD.getDriver().get("https://parabank.parasoft.com/");
+        GWD.getDriver().get(ConfigReader.getProperty("URL"));
     }
 
     @Given("Navigate to Register Site")
@@ -60,5 +61,6 @@ public class _01_Register {
     public void user_should_register_and_login_successfully() {
         register.waitForElement(register.messeageOfNot);
         Assert.assertTrue(register.messeageOfNot.getText().contains(username), "Notification mesajı çıkamadı.");
+        GWD.quitDriver();
     }
 }
