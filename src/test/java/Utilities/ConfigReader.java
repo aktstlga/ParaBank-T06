@@ -41,7 +41,7 @@ public class ConfigReader {
 
         FileOutputStream outputFile = null;
         try {
-            outputFile = new FileOutputStream("configuration.properties");
+            outputFile = new FileOutputStream("src/configuration.properties");
         } catch (FileNotFoundException e) {
             throw new RuntimeException(e);
         }
