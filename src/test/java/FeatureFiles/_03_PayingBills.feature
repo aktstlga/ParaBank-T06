@@ -11,5 +11,9 @@ Feature: Invoice Payment functionality
     Given the user navigates to ParaBank homepage
     When the user logs in with valid credentials
     Then the Account Overview page is displayed
+    And user notes the current account balace
     When Cliks billpay button
     Then User fills the invoice payment form
+    When Success message should be displayed
+    Then Click account overview button
+    When User confirms that funds have been withdrawn from the account

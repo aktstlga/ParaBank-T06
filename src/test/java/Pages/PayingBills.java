@@ -43,6 +43,31 @@ public class PayingBills extends ParentPage {
     @FindBy(css = "input[class='button']")
     public WebElement sendPayment;
 
+    @FindBy(css = "#billpayResult > h1")
+    public WebElement billPayHeader;
 
+    @FindBy(id = "amount")
+    public WebElement getAmount;
+
+    @FindBy(css = "div[id='leftPanel'] > :nth-child(3) > :nth-child(2) > a")
+    public WebElement accountOverviewButton;
+
+    @FindBy(css = "table[id='accountTable'] > :nth-child(2) > :nth-child(2) > :nth-child(2) >b")
+    public WebElement total;
+
+    public String getBillPaymentCompleteText() {
+        waitForElement(billPayHeader);
+        return billPayHeader.getText();
+    }
+
+    public String getAmountText() {
+        waitForElement(getAmount);
+        return getAmount.getText();
+    }
+
+    public String getTotalText() {
+        waitForElement(total);
+        return total.getText();
+    }
 }
 
