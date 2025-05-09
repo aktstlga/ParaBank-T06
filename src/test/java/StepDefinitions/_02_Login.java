@@ -3,6 +3,7 @@
 package StepDefinitions;
 
 import Pages.LoginPage;
+import Utilities.ConfigReader;
 import Utilities.GWD;
 import io.cucumber.java.After;
 import io.cucumber.java.en.*;
@@ -16,10 +17,10 @@ public class _02_Login {
         GWD.getDriver().get("https://parabank.parasoft.com/parabank/index.htm");
     }
 
-    @When("the user logs in with {string} and {string}")
-    public void userLogsInWithCredentials(String user, String pass) {
-        loginPage.enterUsername(user);
-        loginPage.enterPassword(pass);
+    @When("the user logs in with valid credentials")
+    public void userLogsInWithCredentials() {
+        loginPage.enterUsername(ConfigReader.getProperty("username"));
+        loginPage.enterPassword(ConfigReader.getProperty("password"));
         loginPage.clickLogin();
     }
 
@@ -32,6 +33,13 @@ public class _02_Login {
     @And("the user logs out")
     public void userLogsOut() {
         loginPage.clickLogout();
+    }
+
+    @When("the user logs in with invalid credentials")
+    public void userLogsInWithInCredentials() {
+        loginPage.enterUsername(ConfigReader.getProperty("invalidusername"));
+        loginPage.enterPassword(ConfigReader.getProperty("invalidpassword"));
+        loginPage.clickLogin();
     }
 
     @Then("an authentication error message is shown")

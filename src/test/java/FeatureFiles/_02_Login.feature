@@ -2,23 +2,22 @@
 
 Feature: Login functionality
 
+  Background:
+    Given Navigate to ParaBank Site
+    And Navigate to Register Site
+    When Enter Signing Up Informations and click on Register button
+    Then User should register and login successfully
+
   @Positive
-  Scenario Outline: Login with valid credentials
+  Scenario: Login with valid credentials
     Given the user navigates to ParaBank homepage
-    When the user logs in with "<user>" and "<pass>"
+    When the user logs in with valid credentials
     Then the Account Overview page is displayed
     And the user logs out
 
-    Examples:
-      | user | pass   |
-      | brs  | 123456 |
 
   @Negative
-  Scenario Outline: Login with invalid credentials
+  Scenario: Login with invalid credentials
     Given the user navigates to ParaBank homepage
-    When the user logs in with "<user>" and "<pass>"
+    When the user logs in with invalid credentials
     Then an authentication error message is shown
-
-    Examples:
-      | user | pass   |
-      | sncr | 111111 |
