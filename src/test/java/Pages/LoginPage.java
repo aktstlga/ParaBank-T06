@@ -28,6 +28,9 @@ public class LoginPage extends ParentPage {
     @FindBy(css = "#leftPanel > ul > li:nth-child(8) > a")
     public WebElement logoutLink;
 
+    @FindBy(css = "h1[class='title']")
+    public WebElement error;
+
     // Hata mesajı <p> öğesinde olduğu için locator resetlendi
     @FindBy(css = "#rightPanel > p")
     public WebElement loginErrorMessage;
@@ -54,8 +57,8 @@ public class LoginPage extends ParentPage {
     }
 
     public String getErrorMessageText() {
-        waitForElement(loginErrorMessage);
-        return loginErrorMessage.getText();
+        waitForElement(error);
+        return error.getText();
 
     }
 }
