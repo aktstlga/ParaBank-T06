@@ -56,5 +56,6 @@ public class LoginPage extends ParentPage {
     public String getErrorMessageText() {
         waitForElement(loginErrorMessage);
         return loginErrorMessage.getText();
+
     }
 }
