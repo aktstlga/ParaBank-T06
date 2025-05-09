@@ -15,4 +15,3 @@ Feature: Update Contact Info
     And And Leave profile fields empty or enter invalid data
     And Click the update profile button
     Then is required message(s) should appear
-

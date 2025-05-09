@@ -45,9 +45,10 @@ public class _06_UpdateContactInfo {
     }
 
     @Then("Profile Updated message should be visible appear")
-    public void profileUpdatedMessageShouldBeVisibleAppear() {{
-        String pageSource = GWD.getDriver().getPageSource();
-        Assert.assertTrue(pageSource.contains(" Profile Updated "), "Sayfada hiçbir ' Profile Updated' hatası bulunamadı!");
+    public void profileUpdatedMessageShouldBeVisibleAppear() {
+        {
+            String pageSource = GWD.getDriver().getPageSource();
+            Assert.assertTrue(pageSource.contains(" Profile Updated "), "Sayfada hiçbir ' Profile Updated' hatası bulunamadı!");
 
         }
     }
@@ -69,5 +70,3 @@ public class _06_UpdateContactInfo {
         Assert.assertTrue(pageSource.contains(" is required"), "Sayfada hiçbir ' is required' hatası bulunamadı!");
     }
 }
-
-

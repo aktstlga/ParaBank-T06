@@ -9,7 +9,6 @@ import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 
 public class _04_NewAccount {
-
     LoginPage loginPage = new LoginPage();
     NewAccountPage newAccountPage = new NewAccountPage();
 

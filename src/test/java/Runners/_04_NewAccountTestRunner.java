@@ -16,7 +16,6 @@ import org.testng.annotations.AfterClass;
         }
 )
 public class _04_NewAccountTestRunner extends AbstractTestNGCucumberTests {
-
     @AfterClass
     public static void writeExtentReport() {
         ExtentService.getInstance().setSystemInfo("OS", System.getProperty("os.name"));

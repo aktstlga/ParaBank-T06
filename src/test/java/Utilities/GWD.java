@@ -16,11 +16,11 @@ public class GWD {
     public static WebDriverWait wait;
     public static Actions action;
 
-    public static WebDriver getDriver(){
+    public static WebDriver getDriver() {
         Locale.setDefault(new Locale("EN"));
-        System.setProperty("user.language","EN");
+        System.setProperty("user.language", "EN");
 
-        if(threadBrowserName.get()==null){
+        if (threadBrowserName.get() == null) {
             threadBrowserName.set("chrome");
         }
 
@@ -39,7 +39,7 @@ public class GWD {
         threadDriver.get().manage().window().maximize();
         threadDriver.get().manage().timeouts().pageLoadTimeout(Duration.ofSeconds(20));
         wait = new WebDriverWait(threadDriver.get(), Duration.ofSeconds(20));
-        action= new Actions(threadDriver.get());
+        action = new Actions(threadDriver.get());
         return threadDriver.get();
     }
 
@@ -50,11 +50,10 @@ public class GWD {
             throw new RuntimeException(e);
         }
 
-        if (threadDriver.get() != null)
-        {
+        if (threadDriver.get() != null) {
             threadDriver.get().quit();
-            WebDriver driver=threadDriver.get();
-            driver=null;
+            WebDriver driver = threadDriver.get();
+            driver = null;
             threadDriver.set(driver);
         }
     }
