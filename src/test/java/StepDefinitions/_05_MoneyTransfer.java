@@ -24,8 +24,7 @@ public class _05_MoneyTransfer {
     public void thenTransferTheMoney() {
         m.myClick(m.TransferFunds);
         m.mySendKeys(m.amount, "100");
-        m.myClick(m.fromAccount);
-        m.myClick(m.fromAccount2);
+        m.myClick(m.transferbutton);
         Assert.assertTrue(m.message.getText().equals("Transfer Complete!"), "wrong message");
     }
 }
