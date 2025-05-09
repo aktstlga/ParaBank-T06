@@ -6,12 +6,14 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 public class NewAccountPage extends ParentPage {
+    public WebElement createNewAccountButton;
+
     public NewAccountPage() {
         PageFactory.initElements(GWD.getDriver(), this);
     }
 
-    @FindBy(linkText = "Open New Account")
-    public WebElement openNewAccountLink;
+    @FindBy(linkText = "New Account")
+    public WebElement newAccountLink;
 
     @FindBy(id = "type")
     public WebElement accountTypeDropdown;
@@ -19,7 +21,7 @@ public class NewAccountPage extends ParentPage {
     @FindBy(id = "fromAccountId")
     public WebElement fromAccountDropdown;
 
-    @FindBy(css = "input[value='Open New Account']")
+    @FindBy(css = "input.button[value='Open New Account']")
     public WebElement openNewAccountButton;
 
     @FindBy(id = "newAccountId")
