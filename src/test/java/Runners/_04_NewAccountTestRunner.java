@@ -6,7 +6,7 @@ import io.cucumber.testng.CucumberOptions;
 import org.testng.annotations.AfterClass;
 
 @CucumberOptions(
-        features = "src/test/java/FeatureFiles/_04_NewAccount.feature",
+        features = "src/test/resources/FeatureFiles/_04_NewAccount.feature",
         glue = "StepDefinitions",
         plugin = {
                 "pretty",
@@ -20,7 +20,7 @@ public class _04_NewAccountTestRunner extends AbstractTestNGCucumberTests {
     @AfterClass
     public static void writeExtentReport() {
         ExtentService.getInstance().setSystemInfo("OS", System.getProperty("os.name"));
-        ExtentService.getInstance().setSystemInfo("Tester", System.getProperty("user.name"));
-        ExtentService.getInstance().setSystemInfo("Feature", "US603 - New Account");
+        ExtentService.getInstance().setSystemInfo("testcase", System.getProperty("user.name"));
+        ExtentService.getInstance().setSystemInfo("Feature", "US604 - New Account");
     }
 }

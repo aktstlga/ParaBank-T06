@@ -1,66 +1,84 @@
-package StepDefinitions;
+package Pages;
 
-import Pages.LoginPage;
-import Pages.NewAccountPage;
-import Utilities.ConfigReader;
 import Utilities.GWD;
-import io.cucumber.java.en.*;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.Select;
-import org.testng.Assert;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 
-public class _04_NewAccount {
+public class NewAccountPage extends ParentPage {
 
-    LoginPage loginPage = new LoginPage();
-    NewAccountPage newAccountPage = new NewAccountPage();
-
-    @When("the user logs in with {string} and {string}")
-    public void theUserLogsInWith(String usernameKey, String passwordKey) {
-        String username = ConfigReader.getProperty(usernameKey);
-        String password = ConfigReader.getProperty(passwordKey);
-
-        loginPage.enterUsername(username);
-        loginPage.enterPassword(password);
-        loginPage.clickLogin();
-
-        String actualHeader = loginPage.getOverviewHeaderText();
-        Assert.assertEquals(actualHeader, "Accounts Overview", "Login başarısız ya da sayfa yüklenemedi.");
+    public NewAccountPage() {
+        PageFactory.initElements(GWD.getDriver(), this);
     }
 
-    @When("the user navigates to the New Account page")
-    public void navigate_to_new_account() {
-        newAccountPage.myClick(newAccountPage.newAccountLink); // DÜZELTİLDİ
-        Assert.assertTrue(GWD.getDriver().getCurrentUrl().contains("openaccount"), "New Account sayfasına ulaşılamadı.");
+    @FindBy(xpath = "//input[@name='username']")
+    public WebElement username;
+
+    @FindBy(xpath = "//input[@name='password']")
+    public WebElement password;
+
+    @FindBy(xpath = "//input[@value='Log In']")
+    public WebElement loginButton;
+
+    @FindBy(linkText = "Open New Account")
+    public WebElement openNewAccountLink;
+
+    @FindBy(id = "type")
+    public WebElement accountTypeDropdown;
+
+    @FindBy(id = "fromAccountId")
+    public WebElement fromAccountDropdown;
+
+    @FindBy(xpath = "//input[@value='Open New Account']")
+    public WebElement openNewAccountButton;
+
+    @FindBy(id = "newAccountId")
+    public WebElement newAccountNumber;
+
+    @FindBy(xpath = "//h1[contains(text(),'Account Opened!')]")
+    public WebElement successMessage;
+
+    public void goToHomePage() {
+        GWD.getDriver().get("https://parabank.parasoft.com/");
     }
 
-    @And("the user selects account type {string}")
-    public void user_selects_account_type(String accountType) {
-        Select accountSelect = new Select(newAccountPage.accountTypeDropdown);
-        accountSelect.selectByVisibleText(accountType);
+    public void login(String user, String pass) {
+        mySendKeys(username, user);
+        mySendKeys(password, pass);
+        myClick(loginButton);
     }
 
-    @And("the user selects a valid existing account to transfer minimum balance")
-    public void user_selects_existing_account() {
-        Select fromAccount = new Select(newAccountPage.fromAccountDropdown);
-        fromAccount.selectByIndex(0);
+    public boolean isLoggedIn() {
+        return openNewAccountLink.isDisplayed();
     }
 
-    @And("the user clicks on Create New Account button")
-    public void click_create_new_account() {
-        newAccountPage.myClick(newAccountPage.createNewAccountButton); // DÜZELTİLDİ
+    public void goToNewAccountPage() {
+        myClick(openNewAccountLink);
     }
 
-    @Then("a new checking account should be created successfully")
-    public void verify_checking_account_created() {
-        Assert.assertTrue(newAccountPage.successMessage.getText().contains("Account Opened"), "Hesap açılmadı.");
+    public void selectAccountType(String type) {
+        Select select = new Select(accountTypeDropdown);
+        select.selectByVisibleText(type);
     }
 
-    @Then("a new savings account should be created successfully")
-    public void verify_savings_account_created() {
-        Assert.assertTrue(newAccountPage.successMessage.getText().contains("Account Opened"), "Hesap açılmadı.");
+    public void selectExistingAccount() {
+        Select select = new Select(fromAccountDropdown);
+        select.selectByIndex(0); // ilk aktif hesabı seçer
     }
 
-    @And("the user should see the new account number")
-    public void verify_account_number_displayed() {
-        Assert.assertTrue(newAccountPage.newAccountId.isDisplayed(), "Yeni hesap numarası görünmüyor.");
+    public void clickOpenAccount() {
+        myClick(openNewAccountButton);
+    }
+
+    public boolean isAccountCreatedSuccessfully(String accountType) {
+        wait.until(ExpectedConditions.visibilityOf(successMessage));
+        return successMessage.getText().toLowerCase().contains("account opened");
+    }
+
+    public String getNewAccountNumber() {
+        wait.until(ExpectedConditions.visibilityOf(newAccountNumber));
+        return newAccountNumber.getText();
     }
 }
