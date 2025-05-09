@@ -61,7 +61,7 @@ src
 - Get confirmation of successful account creation
 - 🔄 Uses **DataFaker** to generate unique values
 - 🔐 Secure credentials/configs from `config.properties`
-- ![img.png](img.png)
+- ![img.png](images/img.png)
 
 ---
 
@@ -69,7 +69,7 @@ src
 - Login using valid credentials
 - Verify error message on invalid login
 - 🔐 Username/password handled via `config.properties`
-- ![img_1.png](img_1.png)
+- ![img_1.png](images/img_1.png)
 
 ---
 
@@ -77,28 +77,28 @@ src
 - Pay different bills: electricity, water, gas
 - Confirm balance deduction and transaction history
 - 🔄 DataFaker generates dynamic customer and payment info
-- ![img_2.png](img_2.png)
+- ![img_2.png](images/img_2.png)
 
 ---
 
 ### 🏦 US604 – Open New Account
 - Open Checking or Savings accounts
 - Validate creation with correct account number
-- ![img_3.png](img_3.png)
+- ![img_3.png](images/img_3.png)
 
 ---
 
 ### 🔁 US605 – Fund Transfer Between Accounts
 - Transfer funds internally between user’s accounts
 - Verify amount, source, and destination after operation
-- ![img_4.png](img_4.png)
+- ![img_4.png](images/img_4.png)
 
 ---
 
 ### 📝 US606 – Update Contact Information
 - Update profile fields: name, address, phone, etc.
 - Validate saved changes and handle invalid data
-- ![img_5.png](img_5.png)
+- ![img_5.png](images/img_5.png)
 
 ---
 
@@ -106,7 +106,7 @@ src
 - Apply for a loan with specific amount and down payment
 - See immediate result: approved or denied
 - View new loan account if approved
-- ![img_6.png](img_6.png)
+- ![img_6.png](images/img_6.png)
 
 ---
 
