@@ -19,7 +19,7 @@ public class ParentPage extends GWD {
         wait.until(ExpectedConditions.visibilityOf(element));
         wait.until(ExpectedConditions.elementToBeClickable(element));
         scrollToElement(element);
-        element.click();
+        action.moveToElement(element).click(element).build().perform();
     }
 
     public void scrollToElement(WebElement element) {
@@ -27,7 +27,7 @@ public class ParentPage extends GWD {
         js.executeScript("arguments[0].scrollIntoView();", element);
     }
 
-    public void waitForElement(WebElement element){
+    public void waitForElement(WebElement element) {
         wait.until(ExpectedConditions.visibilityOf(element));
     }
 }
