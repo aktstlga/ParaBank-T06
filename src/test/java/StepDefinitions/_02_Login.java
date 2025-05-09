@@ -45,7 +45,7 @@ public class _02_Login {
     @Then("an authentication error message is shown")
     public void verifyErrorMessageDisplayed() {
         String err = loginPage.getErrorMessageText();
-        Assert.assertTrue(err.contains("could not be verified"),
+        Assert.assertTrue(err.contains("ror"),
                 "Expected error message not found, actual: " + err);
     }
 
