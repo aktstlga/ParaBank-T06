@@ -21,6 +21,6 @@ public class _04_NewAccountTestRunner extends AbstractTestNGCucumberTests {
     public static void writeExtentReport() {
         ExtentService.getInstance().setSystemInfo("OS", System.getProperty("os.name"));
         ExtentService.getInstance().setSystemInfo("Tester", System.getProperty("user.name"));
-        ExtentService.getInstance().setSystemInfo("Feature", "US603 - Open New Account");
+        ExtentService.getInstance().setSystemInfo("Feature", "US603 - New Account");
     }
 }

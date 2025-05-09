@@ -2,6 +2,7 @@ package StepDefinitions;
 
 import Pages.LoginPage;
 import Pages.NewAccountPage;
+import Utilities.ConfigReader;
 import Utilities.GWD;
 import io.cucumber.java.en.*;
 import org.openqa.selenium.support.ui.Select;
@@ -12,10 +13,23 @@ public class _04_NewAccount {
     LoginPage loginPage = new LoginPage();
     NewAccountPage newAccountPage = new NewAccountPage();
 
-    @When("the user navigates to the Open New Account page")
-    public void navigate_to_open_new_account() {
-        newAccountPage.myClick(newAccountPage.openNewAccountLink);
-        Assert.assertTrue(GWD.getDriver().getCurrentUrl().contains("openaccount"), "Open Account sayfasına ulaşılamadı.");
+    @When("the user logs in with {string} and {string}")
+    public void theUserLogsInWith(String usernameKey, String passwordKey) {
+        String username = ConfigReader.getProperty(usernameKey);
+        String password = ConfigReader.getProperty(passwordKey);
+
+        loginPage.enterUsername(username);
+        loginPage.enterPassword(password);
+        loginPage.clickLogin();
+
+        String actualHeader = loginPage.getOverviewHeaderText();
+        Assert.assertEquals(actualHeader, "Accounts Overview", "Login başarısız ya da sayfa yüklenemedi.");
+    }
+
+    @When("the user navigates to the New Account page")
+    public void navigate_to_new_account() {
+        newAccountPage.myClick(newAccountPage.newAccountLink); // DÜZELTİLDİ
+        Assert.assertTrue(GWD.getDriver().getCurrentUrl().contains("openaccount"), "New Account sayfasına ulaşılamadı.");
     }
 
     @And("the user selects account type {string}")
@@ -27,12 +41,12 @@ public class _04_NewAccount {
     @And("the user selects a valid existing account to transfer minimum balance")
     public void user_selects_existing_account() {
         Select fromAccount = new Select(newAccountPage.fromAccountDropdown);
-        fromAccount.selectByIndex(0); // ilk geçerli hesabı seç
+        fromAccount.selectByIndex(0);
     }
 
-    @And("the user clicks on Open New Account button")
-    public void click_open_new_account() {
-        newAccountPage.myClick(newAccountPage.openNewAccountButton);
+    @And("the user clicks on Create New Account button")
+    public void click_create_new_account() {
+        newAccountPage.myClick(newAccountPage.createNewAccountButton); // DÜZELTİLDİ
     }
 
     @Then("a new checking account should be created successfully")
