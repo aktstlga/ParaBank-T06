@@ -31,11 +31,8 @@ public class MoneyTransfer extends ParentPage {
     @FindBy(xpath = "//input[@id='amount']")
     public WebElement amount;
 
-    @FindBy(xpath = "//select[@id='fromAccountId']")
-    public WebElement fromAccount;
-
-    @FindBy(xpath = "//select[@id='fromAccountId']//option[2]")
-    public WebElement fromAccount2;
+    @FindBy(xpath = "//input[@value='Transfer']")
+    public WebElement transferbutton;
 
     @FindBy(xpath = "//*[text()='Transfer Complete!']")
     public WebElement message;
