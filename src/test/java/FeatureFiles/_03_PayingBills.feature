@@ -8,9 +8,9 @@ Feature: Invoice Payment functionality
     Then User should register and login successfully
 
   Scenario: Paying different types of invoices
-    Given The user navigates to ParaBank homepage
-    When The user logs in with valid credentials
-    Then The Account Overview page is displayed
+    Given the user navigates to ParaBank homepage
+    When the user logs in with valid credentials
+    Then the Account Overview page is displayed
     And The User notes the current account balance
     When Clicks billpay button
     Then The User fills the invoice payment form
