@@ -25,5 +25,4 @@
             <class name="Runners.ParallelTestRunner"></class>
         </classes>
     </test>
-
 </suite>
