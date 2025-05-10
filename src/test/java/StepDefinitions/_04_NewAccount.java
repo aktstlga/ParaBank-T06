@@ -1,16 +1,21 @@
 package StepDefinitions;
 
-import Pages.LoginPage;
 import Pages.NewAccountPage;
-import Utilities.ConfigReader;
 import Utilities.GWD;
 import io.cucumber.java.en.*;
+import org.openqa.selenium.By;
+import org.openqa.selenium.StaleElementReferenceException;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
+
+import java.time.Duration;
 
 public class _04_NewAccount {
 
-    LoginPage loginPage = new LoginPage();
     NewAccountPage newAccountPage = new NewAccountPage();
 
     @When("the user opens a new {string} account")
@@ -18,7 +23,7 @@ public class _04_NewAccount {
         newAccountPage.clickOpenNewAccountLink();
         newAccountPage.selectAccountType(accountType);
         newAccountPage.selectFirstAvailableAccount();
-        newAccountPage.clickOpenAccountButton();
+        newAccountPage.clickOpenNewAccountButton();
     }
 
     @Then("a confirmation message is displayed")
@@ -30,7 +35,7 @@ public class _04_NewAccount {
 
     @When("the user navigates to the New Account page")
     public void navigate_to_new_account() {
-        //newAccountPage.myClick(newAccountPage.newAccountLink); // DÜZELTİLDİ
+        newAccountPage.clickOpenNewAccountLink();
         Assert.assertTrue(GWD.getDriver().getCurrentUrl().contains("openaccount"), "New Account sayfasına ulaşılamadı.");
     }
 
@@ -42,27 +47,44 @@ public class _04_NewAccount {
 
     @And("the user selects a valid existing account to transfer minimum balance")
     public void user_selects_existing_account() {
-        Select fromAccount = new Select(newAccountPage.fromAccountDropdown);
-        fromAccount.selectByIndex(0);
+        WebDriverWait wait = new WebDriverWait(GWD.getDriver(), Duration.ofSeconds(10));
+        wait.until(ExpectedConditions.elementToBeClickable(newAccountPage.accountTypeDropdown));
+        Select select = new Select(newAccountPage.accountTypeDropdown);
+        select.selectByIndex(0);
     }
 
-    @And("the user clicks on Create New Account button")
-    public void click_create_new_account() {
-      //  newAccountPage.myClick(newAccountPage.createNewAccountButton); // DÜZELTİLDİ
+    @And("the user clicks on Open New Account button")
+    public void the_user_clicks_on_open_new_account_button() {
+        WebDriverWait wait = new WebDriverWait(GWD.getDriver(), Duration.ofSeconds(10));
+        By locator = By.xpath("//input[@value='Open New Account']");
+
+        for (int i = 0; i < 2; i++) {
+            try {
+                WebElement element = wait.until(ExpectedConditions.presenceOfElementLocated(locator));
+                wait.until(ExpectedConditions.elementToBeClickable(element));
+                new Actions(GWD.getDriver()).doubleClick(element).perform();
+                break;
+            } catch (StaleElementReferenceException e) {
+                System.out.println("Stale element yakalandı, tekrar deneniyor...");
+            }
+        }
     }
 
     @Then("a new checking account should be created successfully")
     public void verify_checking_account_created() {
-        Assert.assertTrue(newAccountPage.successMessage.getText().contains("Account Opened"), "Hesap açılmadı.");
+        Assert.assertTrue(newAccountPage.getSuccessMessage().contains("Account Opened"), "Hesap açılmadı.");
     }
 
     @Then("a new savings account should be created successfully")
     public void verify_savings_account_created() {
-        Assert.assertTrue(newAccountPage.successMessage.getText().contains("Account Opened"), "Hesap açılmadı.");
+        Assert.assertTrue(newAccountPage.getSuccessMessage().contains("Account Opened!"), "Hesap açılmadı.");
     }
 
     @And("the user should see the new account number")
     public void verify_account_number_displayed() {
-        //Assert.assertTrue(newAccountPage.newAccountId.isDisplayed(), "Yeni hesap numarası görünmüyor.");
+        newAccountPage.waitForElement(newAccountPage.newAccountId);
+        String accountNumber = newAccountPage.getNewAccountNumber();
+        Assert.assertNotNull(accountNumber, "Hesap numarası boş.");
+        System.out.println("Yeni hesap numarası: " + accountNumber);
     }
 }

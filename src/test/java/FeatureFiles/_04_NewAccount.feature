@@ -11,7 +11,8 @@ Feature: New Account functionality
     Given the user navigates to ParaBank homepage
     When the user logs in with valid credentials
     Then the Account Overview page is displayed
-    When the user navigates to the New Account page And the user selects account type "CHECKING"
+    When the user navigates to the New Account page
+    And the user selects account type "CHECKING"
     And the user selects a valid existing account to transfer minimum balance
     And the user clicks on Open New Account button
     Then a new checking account should be created successfully
@@ -21,7 +22,8 @@ Feature: New Account functionality
     Given the user navigates to ParaBank homepage
     When the user logs in with valid credentials
     Then the Account Overview page is displayed
-    When the user navigates to the New Account page And the user selects account type "SAVINGS"
+    When the user navigates to the New Account page
+    And the user selects account type "SAVINGS"
     And the user selects a valid existing account to transfer minimum balance
     And the user clicks on Open New Account button
     Then a new savings account should be created successfully
