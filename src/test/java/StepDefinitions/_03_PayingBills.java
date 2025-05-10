@@ -13,8 +13,8 @@ public class _03_PayingBills {
     double amountPaid;
     double totalnumber;
 
-    @And("user notes the current account balace")
-    public void userNotesTheCurrentAccountBalace() {
+    @And("The User notes the current account balance")
+    public void userNotesTheCurrentAccountBalance() {
         pb.myClick(pb.accountOverviewButton);
         String balanceText = pb.getTotalText().replace("$", "");
         balance = Double.parseDouble(balanceText);
