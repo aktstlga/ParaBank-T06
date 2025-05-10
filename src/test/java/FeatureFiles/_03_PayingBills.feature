@@ -14,6 +14,8 @@ Feature: Invoice Payment functionality
     And user notes the current account balace
     When Cliks billpay button
     Then User fills the invoice payment form
-    When Success message should be displayed
+    And Success message should be displayed
+    When Verifies against user invoice
     Then Click account overview button
+    And user looks at last account activity
     When User confirms that funds have been withdrawn from the account
