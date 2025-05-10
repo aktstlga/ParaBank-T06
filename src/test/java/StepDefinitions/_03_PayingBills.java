@@ -9,11 +9,16 @@ public class _03_PayingBills {
     PayingBills pb = new PayingBills();
     Faker dataFaker = new Faker();
 
-    @And("The User notes the current account balance")
+    double balance;
+    double amountPaid;
+    double totalnumber;
+
+    @And("user notes the current account balace")
     public void userNotesTheCurrentAccountBalace() {
         pb.myClick(pb.accountOverviewButton);
-        String balanceText = pb.getTotalText().replace("$", "").replace(".", "");
-        System.out.println("balance=" + balanceText);
+        String balanceText = pb.getTotalText().replace("$", "");
+        balance = Double.parseDouble(balanceText);
+        System.out.println("Initial balance = " + balance);
     }
 
     @When("Clicks billpay button")
@@ -48,9 +53,9 @@ public class _03_PayingBills {
 
     @And("Verifies against user invoice")
     public void verifiesAgainstUserInvoice() {
-        String amountHeader = pb.getAmountText();
-        double amountPaid = Double.parseDouble(pb.getAmountText().replace("$", ""));
-        System.out.println("amountPaid = " + amountPaid);
+        String amountText = pb.getAmountText().replace("$", "");
+        amountPaid = Double.parseDouble(amountText);
+        System.out.println("Amount paid = " + amountPaid);
     }
 
     @Then("Clicks account overview button")
@@ -60,15 +65,18 @@ public class _03_PayingBills {
 
     @And("The User looks at last account activity")
     public void userLooksAtLastAccountActivity() {
-        String totalHeader = pb.getTotalText();
-        double totalnumber = Double.parseDouble(pb.getAmountText().replace("$", ""));
-        System.out.println("new total" + totalnumber);
+        String newBalanceText = pb.getTotalText().replace("$", "");
+        totalnumber = Double.parseDouble(newBalanceText);
+        System.out.println("New balance = " + totalnumber);
     }
 
     @When("The User confirms that funds have been withdrawn from the account")
     public void userConfirmsThatFundsHaveBeenWithdrawnFromTheAccount() {
+        double calculated = totalnumber + amountPaid;
+        System.out.println("Calculated previous balance: " + calculated);
+        System.out.println("Recorded previous balance: " + balance);
 
+        Assert.assertEquals(calculated, balance, "Balance, payment amount, and new total do not match!");
     }
-
 }
 
