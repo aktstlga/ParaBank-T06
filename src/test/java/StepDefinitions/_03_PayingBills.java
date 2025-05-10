@@ -68,6 +68,7 @@ public class _03_PayingBills {
         String newBalanceText = pb.getTotalText().replace("$", "");
         totalnumber = Double.parseDouble(newBalanceText);
         System.out.println("New balance = " + totalnumber);
+        ;
     }
 
     @When("The User confirms that funds have been withdrawn from the account")
