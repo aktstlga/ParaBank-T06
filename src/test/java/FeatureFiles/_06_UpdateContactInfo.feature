@@ -1,3 +1,4 @@
+@Contact @Accounts
 Feature: Update Contact Info
 
   Background:

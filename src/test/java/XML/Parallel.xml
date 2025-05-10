@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<suite name="Parallel Tests" parallel="tests" thread-count="3">
+
+    <test name="Chrome">
+        <parameter name="browserType" value="chrome"></parameter>
+
+        <classes>
+            <class name="Runners.ParallelTestRunner"></class>
+        </classes>
+    </test>
+
+    <test name="Edge">
+        <parameter name="browserType" value="edge"></parameter>
+
+        <classes>
+            <class name="Runners.ParallelTestRunner"></class>
+        </classes>
+    </test>
+
+    <test name="Firefox">
+        <parameter name="browserType" value="firefox"></parameter>
+
+        <classes>
+            <class name="Runners.ParallelTestRunner"></class>
+        </classes>
+    </test>
+
+</suite>

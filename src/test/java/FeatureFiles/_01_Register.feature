@@ -1,3 +1,4 @@
+@Smoke @Regression @Accounts
 Feature: Register functionality
 
   Scenario:Register with valid information

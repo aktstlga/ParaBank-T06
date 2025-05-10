@@ -1,3 +1,4 @@
+@Regression @Payment
 Feature:Money Transfer functionality
 
   Background:

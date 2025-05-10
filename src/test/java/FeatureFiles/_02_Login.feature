@@ -1,5 +1,5 @@
 # src/test/java/FeatureFiles/_02_Login.feature
-
+@Smoke @Regression @Accounts
 Feature: Login functionality
 
   Background:

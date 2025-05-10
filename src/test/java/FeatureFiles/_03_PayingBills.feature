@@ -1,3 +1,4 @@
+@Smoke @Regression @Payment
 Feature: Invoice Payment functionality
 
   Background:

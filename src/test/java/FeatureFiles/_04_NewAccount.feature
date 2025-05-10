@@ -1,7 +1,5 @@
+@Smoke @Regression @Accounts
 Feature: New Account functionality
-
-  Background:
-    Given the user logs in with credentials from config
 
   Scenario: Checking Account
     When the user navigates to the New Account page

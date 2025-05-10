@@ -15,7 +15,7 @@ public class ConfigReader {
 
     static {
         try {
-            FileInputStream file = new FileInputStream("src/configuration.properties");
+            FileInputStream file = new FileInputStream("configuration.properties");
             properties.load(file);
             file.close();
         } catch (IOException e) {
@@ -41,7 +41,7 @@ public class ConfigReader {
 
         FileOutputStream outputFile = null;
         try {
-            outputFile = new FileOutputStream("src/configuration.properties");
+            outputFile = new FileOutputStream("configuration.properties");
         } catch (FileNotFoundException e) {
             throw new RuntimeException(e);
         }
