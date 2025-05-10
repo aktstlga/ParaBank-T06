@@ -1,4 +1,3 @@
-@Smoke @Regression @Accounts
 Feature: New Account functionality
 
   Scenario: Checking Account

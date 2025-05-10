@@ -15,7 +15,6 @@ Feature: Login functionality
     Then the Account Overview page is displayed
     And the user logs out
 
-
   @Negative
   Scenario: Login with invalid credentials
     Given the user navigates to ParaBank homepage

@@ -7,7 +7,6 @@ Feature: Invoice Payment functionality
     When Enter Signing Up Informations and click on Register button
     Then User should register and login successfully
 
-
   Scenario: Paying different types of invoices
     Given The user navigates to ParaBank homepage
     When The user logs in with valid credentials
