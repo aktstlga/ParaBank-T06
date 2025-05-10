@@ -3,8 +3,6 @@ package StepDefinitions;
 import Pages.UpdateContactInfo;
 import Utilities.GWD;
 import io.cucumber.java.en.*;
-import org.openqa.selenium.Keys;
-import org.openqa.selenium.interactions.Actions;
 import org.testng.Assert;
 
 
@@ -41,7 +39,7 @@ public class _06_UpdateContactInfo {
 
     @And("Click the update profile button")
     public void clickTheUpdateProfileButton() {
-        updateContactInfo.myClick(updateContactInfo.updateProfıle);
+        updateContactInfo.myClick(updateContactInfo.updateProfile);
     }
 
     @Then("Profile Updated message should be visible appear")

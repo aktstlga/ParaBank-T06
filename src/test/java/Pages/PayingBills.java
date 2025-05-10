@@ -70,4 +70,3 @@ public class PayingBills extends ParentPage {
         return total.getText();
     }
 }
-

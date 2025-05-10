@@ -31,10 +31,6 @@ public class LoginPage extends ParentPage {
     @FindBy(css = "h1[class='title']")
     public WebElement error;
 
-    // Hata mesajı <p> öğesinde olduğu için locator resetlendi
-    @FindBy(css = "#rightPanel > p")
-    public WebElement loginErrorMessage;
-
     public void enterUsername(String username) {
         mySendKeys(usernameInput, username);
     }

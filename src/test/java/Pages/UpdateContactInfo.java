@@ -42,6 +42,5 @@ public class UpdateContactInfo extends ParentPage{
     public WebElement phoneNumber;
 
     @FindBy(xpath = "//input[@value='Update Profile']")
-    public WebElement updateProfıle;
-
+    public WebElement updateProfile;
 }
