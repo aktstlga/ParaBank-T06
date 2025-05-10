@@ -9,19 +9,19 @@ public class _03_PayingBills {
     PayingBills pb = new PayingBills();
     Faker dataFaker = new Faker();
 
-    @And("user notes the current account balace")
+    @And("The User notes the current account balance")
     public void userNotesTheCurrentAccountBalace() {
         pb.myClick(pb.accountOverviewButton);
         String balanceText = pb.getTotalText().replace("$", "").replace(".", "");
         System.out.println("balance=" + balanceText);
     }
 
-    @When("Cliks billpay button")
+    @When("Clicks billpay button")
     public void clicksBill() {
         pb.myClick(pb.billPayButton);
     }
 
-    @Then("User fills the invoice payment form")
+    @Then("The User fills the invoice payment form")
     public void userFillsTheInvoicePaymentForm() {
         pb.mySendKeys(pb.payeeName, dataFaker.company().name());
         pb.mySendKeys(pb.adress, dataFaker.address().fullAddress());
@@ -53,19 +53,19 @@ public class _03_PayingBills {
         System.out.println("amountPaid = " + amountPaid);
     }
 
-    @Then("Click account overview button")
+    @Then("Clicks account overview button")
     public void clickAccountOverviewButton() {
         pb.myClick(pb.accountOverviewButton);
     }
 
-    @And("user looks at last account activity")
+    @And("The User looks at last account activity")
     public void userLooksAtLastAccountActivity() {
         String totalHeader = pb.getTotalText();
         double totalnumber = Double.parseDouble(pb.getAmountText().replace("$", ""));
         System.out.println("new total" + totalnumber);
     }
 
-    @When("User confirms that funds have been withdrawn from the account")
+    @When("The User confirms that funds have been withdrawn from the account")
     public void userConfirmsThatFundsHaveBeenWithdrawnFromTheAccount() {
 
     }
