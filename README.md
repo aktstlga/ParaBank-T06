@@ -41,15 +41,13 @@ This structure ensures clarity, flexibility, and data independence during test e
 
 ```
 src
-├── main
-│   └── java
-│       ├── pages/           # Page Object Model classes
-│       ├── utilities/       # Config reader, logger, base driver, etc.
 ├── test
 │   └── java
 │       ├── stepdefinitions/ # Cucumber step definitions
 │       ├── runners/         # TestNG/Cucumber runners
-│       └── features/        # Gherkin .feature files
+│       └── features/        # Gherkin .feature files 
+│       ├── pages/           # Page Object Model classes 
+│       ├── utilities/       # Config reader, logger, base driver, etc.
 ```
 
 ---
